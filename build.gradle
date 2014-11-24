@@ -1,0 +1,21 @@
+repositories {
+	jcenter()
+}
+
+apply plugin: 'java'
+
+compileJava {
+	sourceCompatibility = '1.7'
+	targetCompatibility = '1.7'
+	options.encoding = 'UTF-8'
+}
+
+
+dependencies {
+	compile 'org.freemarker:freemarker:2.3.20'
+}
+
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.2'
+}
