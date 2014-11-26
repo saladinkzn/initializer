@@ -1,4 +1,4 @@
-package ru.shadam.initializer.dto;
+package ru.shadam.initializer.plugin.gradle.config;
 
 /**
  * @author sala

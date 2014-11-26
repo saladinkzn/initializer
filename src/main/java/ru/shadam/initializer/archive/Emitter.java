@@ -1,7 +1,5 @@
 package ru.shadam.initializer.archive;
 
-import ru.shadam.initializer.dto.File;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -21,6 +19,7 @@ public class Emitter {
                 final ZipEntry zipEntry = new ZipEntry(fileName);
                 zipOutputStream.putNextEntry(zipEntry);
                 zipOutputStream.write(content.getBytes(Charset.forName("UTF-8")));
+                zipOutputStream.closeEntry();
             }
         }
     }
