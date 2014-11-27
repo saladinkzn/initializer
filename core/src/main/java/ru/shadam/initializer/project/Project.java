@@ -6,6 +6,7 @@ import ru.shadam.initializer.util.InstantiateUtil;
 
 import java.util.*;
 
+// TODO : Introduce separate interfaces for plugins and users?
 /**
  *
  */
