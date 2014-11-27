@@ -1,6 +1,6 @@
-package ru.shadam.initializer.plugin.java;
+package ru.shadam.initilizer.plugin.java;
 
-import ru.shadam.initializer.plugin.java.config.JavaClass;
+import ru.shadam.initilizer.plugin.java.config.JavaClass;
 
 import java.util.ArrayList;
 import java.util.List;

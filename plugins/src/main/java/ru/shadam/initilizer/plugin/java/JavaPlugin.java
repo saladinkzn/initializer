@@ -1,11 +1,11 @@
-package ru.shadam.initializer.plugin.java;
+package ru.shadam.initilizer.plugin.java;
 
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
-import ru.shadam.initializer.plugin.gradle.GradleConfig;
-import ru.shadam.initializer.plugin.gradle.GradlePlugin;
-import ru.shadam.initializer.plugin.gradle.config.Extension;
-import ru.shadam.initializer.plugin.java.config.JavaClass;
+import ru.shadam.initilizer.plugin.gradle.GradleConfig;
+import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
+import ru.shadam.initilizer.plugin.gradle.config.Extension;
+import ru.shadam.initilizer.plugin.java.config.JavaClass;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.renderer.FreemarkerRenderer;
 
@@ -41,7 +41,7 @@ public class JavaPlugin extends Plugin {
         options.put("options.encoding", Extension.wrapOptionValue("UTF-8"));
         //
         gradleConfig.getExtensions().add(new Extension("compileJava", options));
-        gradleConfig.getPlugins().add(new ru.shadam.initializer.plugin.gradle.config.Plugin("java"));
+        gradleConfig.getPlugins().add(new ru.shadam.initilizer.plugin.gradle.config.Plugin("java"));
     }
 
     @Override

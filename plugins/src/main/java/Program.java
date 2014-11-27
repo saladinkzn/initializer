@@ -1,14 +1,15 @@
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
 import ru.shadam.initializer.archive.Emitter;
-import ru.shadam.initializer.plugin.gradle.GradleConfig;
-import ru.shadam.initializer.plugin.gradle.GradlePlugin;
-import ru.shadam.initializer.plugin.java.JavaConfig;
-import ru.shadam.initializer.plugin.java.JavaPlugin;
-import ru.shadam.initializer.plugin.java.config.JavaClass;
+import ru.shadam.initilizer.plugin.gradle.GradleConfig;
+import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
+import ru.shadam.initilizer.plugin.java.JavaConfig;
+import ru.shadam.initilizer.plugin.java.JavaPlugin;
+import ru.shadam.initilizer.plugin.java.config.JavaClass;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.renderer.FreemarkerRenderer;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class Program {
                 classes
         );
         //
-        try(FileOutputStream fileOutputStream = new FileOutputStream("hello.zip")) {
+        try(FileOutputStream fileOutputStream = new FileOutputStream(".." + File.separator + "hello.zip")) {
             emitter.emitZipArchive(project.execute(), fileOutputStream);
         }
     }

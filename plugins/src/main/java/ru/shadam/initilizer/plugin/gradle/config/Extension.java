@@ -1,4 +1,4 @@
-package ru.shadam.initializer.plugin.gradle.config;
+package ru.shadam.initilizer.plugin.gradle.config;
 
 import java.util.Map;
 

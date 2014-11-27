@@ -1,4 +1,4 @@
-package ru.shadam.initializer.plugin.gradle;
+package ru.shadam.initilizer.plugin.gradle;
 
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.project.Project;
