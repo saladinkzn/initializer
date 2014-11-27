@@ -9,6 +9,14 @@ public class JavaClass {
 
     private String bodyString;
 
+    public JavaClass() {
+    }
+
+    public JavaClass(String packageName, String className) {
+        this.packageName = packageName;
+        this.className = className;
+    }
+
     public String getPackageName() {
         return packageName;
     }

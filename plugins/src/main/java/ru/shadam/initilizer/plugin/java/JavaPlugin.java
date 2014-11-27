@@ -17,6 +17,8 @@ import java.util.List;
  *
  */
 public class JavaPlugin extends Plugin {
+    public static final String JAVA_CONFIG_KEY = "compileJava";
+
     public JavaPlugin(FreemarkerRenderer renderer) {
         super(renderer);
     }
@@ -26,12 +28,12 @@ public class JavaPlugin extends Plugin {
         if(!project.isPluginRegistered(GradlePlugin.class)) {
             throw new IllegalStateException("Gradle plugin should be applied!");
         }
-        project.registerConfig("compileJava", JavaConfig.class);
+        project.registerConfig(JAVA_CONFIG_KEY, JavaConfig.class);
     }
 
     @Override
     public void configure(Project project) {
-        final JavaConfig javaConfig = project.getConfig("compileJava");
+        final JavaConfig javaConfig = project.getConfig(JAVA_CONFIG_KEY);
         //
         final GradleConfig gradleConfig = project.getConfig("gradle");
         //
@@ -46,7 +48,7 @@ public class JavaPlugin extends Plugin {
 
     @Override
     public List<File> generateFiles(Project project) {
-        final JavaConfig javaConfig = project.getConfig("compileJava");
+        final JavaConfig javaConfig = project.getConfig(JAVA_CONFIG_KEY);
         //
         final List<File> files = new ArrayList<>();
         for (JavaClass javaClass : javaConfig.getClasses()) {

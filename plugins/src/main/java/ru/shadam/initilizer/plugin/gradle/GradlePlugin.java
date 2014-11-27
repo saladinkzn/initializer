@@ -12,13 +12,15 @@ import java.util.List;
  *
  */
 public class GradlePlugin extends Plugin {
+    public static final String GRADLE_CONFIG_KEY = "gradle";
+
     public GradlePlugin(FreemarkerRenderer renderer) {
         super(renderer);
     }
 
     @Override
     public void register(Project project) {
-        project.registerConfig("gradle", GradleConfig.class);
+        project.registerConfig(GRADLE_CONFIG_KEY, GradleConfig.class);
     }
 
     @Override

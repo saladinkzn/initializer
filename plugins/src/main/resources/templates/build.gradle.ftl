@@ -1,13 +1,19 @@
 buildscript {
 }
 
+repositories {
+    <#list repositories as repository>
+    ${repository.string}
+    </#list>
+}
+
 <#list plugins as plugin>
 apply plugin: 'java'
 </#list>
 
 dependencies {
     <#list dependencies as dependency>
-        compile(${dependency.group}:${dependency.name}:${dependency.version})
+        compile("${dependency.group}:${dependency.name}:${dependency.version}")
     </#list>
 }
 
