@@ -10,7 +10,6 @@ import ru.shadam.initilizer.plugin.gradle.config.Dependency;
 import ru.shadam.initilizer.plugin.gradle.config.Repository;
 import ru.shadam.initilizer.plugin.java.JavaConfig;
 import ru.shadam.initilizer.plugin.java.JavaPlugin;
-import ru.shadam.initilizer.plugin.java.config.JavaClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,24 +54,13 @@ public class SpringBootPlugin extends Plugin {
         //
         final JavaConfig javaConfig = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
         //
-//        final JavaClass program = new JavaClass("org.example", "Program");
-
-        //
-//        javaConfig.getClasses()
-//                .add(program);
-
+        javaConfig.getClasses().add(springBootConfig.getController());
+        javaConfig.getClasses().add(springBootConfig.getEntryPoint());
     }
 
     @Override
     public List<File> generateFiles(Project project) {
-        final JavaConfig javaConfig = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
-        final JavaClass entryPoint = new JavaClass("org.example", "Program");
-        final JavaClass controller = new JavaClass("org.example", "HelloController");
-        //
-        final List<File> files = new ArrayList<>();
-        files.add(new File(entryPoint.getPath(javaConfig.getSourceDirectory()), renderFile("templates/springboot/entrypoint.java.ftl", entryPoint)));
-        files.add(new File(controller.getPath(javaConfig.getSourceDirectory()), renderFile("templates/springboot/controller.java.ftl", controller)));
-        return files;
-
+        // No op as it uses JavaPlugin to generate files
+        return new ArrayList<>();
     }
 }

@@ -6,15 +6,12 @@ package ru.shadam.initilizer.plugin.java.config;
 public class JavaClass {
     private String packageName;
     private String className;
+    private String templateName;
 
-    private String bodyString;
-
-    public JavaClass() {
-    }
-
-    public JavaClass(String packageName, String className) {
+    public JavaClass(String packageName, String className, String templateName) {
         this.packageName = packageName;
         this.className = className;
+        this.templateName = templateName;
     }
 
     public String getPackageName() {
@@ -33,12 +30,12 @@ public class JavaClass {
         this.className = className;
     }
 
-    public String getBodyString() {
-        return bodyString;
+    public String getTemplateName() {
+        return templateName;
     }
 
-    public void setBodyString(String bodyString) {
-        this.bodyString = bodyString;
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
     }
 
     public String getPath(String sourceDirectory) {

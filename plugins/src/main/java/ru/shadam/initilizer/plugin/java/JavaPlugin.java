@@ -52,7 +52,7 @@ public class JavaPlugin extends Plugin {
         //
         final List<File> files = new ArrayList<>();
         for (JavaClass javaClass : javaConfig.getClasses()) {
-            files.add(new File(javaClass.getPath(javaConfig.getSourceDirectory()), renderFile("templates/program.java.ftl", javaClass)));
+            files.add(new File(javaClass.getPath(javaConfig.getSourceDirectory()), renderFile(javaClass.getTemplateName(), javaClass)));
         }
         return files;
     }
