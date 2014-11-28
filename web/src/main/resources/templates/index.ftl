@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <title>Initializer by sala</title>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.1/css/bootstrap.css">
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.1/css/bootstrap-theme.css">
     </head>
