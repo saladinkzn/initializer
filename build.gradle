@@ -29,6 +29,20 @@ project(':plugins') {
 	}
 }
 
+project(':web') {
+	apply plugin: 'application'
+	mainClassName = 'ru.shadam.initializer.Program'
+
+	dependencies {
+		compile project(':core')
+		compile project(':plugins')
+
+		compile 'org.springframework.boot:spring-boot-starter-web:1.2.0.RC2'
+		compile 'org.springframework.boot:spring-boot-starter-freemarker:1.2.0.RC2'
+		compile 'org.webjars:bootstrap:3.3.1'
+	}
+}
+
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.1'

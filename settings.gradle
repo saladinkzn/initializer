@@ -1,1 +1,1 @@
-include 'core', 'plugins'
+include 'core', 'plugins', 'web'
