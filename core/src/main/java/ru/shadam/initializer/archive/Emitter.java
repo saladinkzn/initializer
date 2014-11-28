@@ -12,6 +12,13 @@ import java.util.zip.ZipOutputStream;
  * @author sala
  */
 public class Emitter {
+    /**
+     * Create zip archive for list of files
+     *
+     * @param files list of files
+     * @param outputStream output stream to write zip archive to
+     * @throws IOException
+     */
     public void emitZipArchive(List<File> files, OutputStream outputStream) throws IOException {
         try(ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
             for(File file: files) {
@@ -25,6 +32,13 @@ public class Emitter {
         }
     }
 
+    /**
+     * Create folder for list of files
+     *
+     * @param files list of files
+     * @param rootCategory root folder
+     * @throws IOException
+     */
     public void emitFolder(List<File> files, String rootCategory) throws IOException {
         for(File file: files) {
             final Path path = Paths.get(rootCategory, file.getName());
@@ -32,7 +46,8 @@ public class Emitter {
             final java.io.File ioFile = path.toFile();
             dirFile.mkdirs();
             try(FileOutputStream fileOutputStream = new FileOutputStream(ioFile);
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream))) {
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)) {
                 bufferedWriter.write(file.getContent());
             }
         }

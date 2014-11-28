@@ -19,11 +19,11 @@ public class Project {
         configs = new HashMap<>();
     }
 
-    public boolean isPluginRegistered(Class<?> pluginClass) {
+    public boolean isPluginRegistered(Class<? extends Plugin> pluginClass) {
         return plugins.containsKey(pluginClass);
     }
 
-    public <T extends Plugin> void registerPlugin(T plugin) {
+    public void registerPlugin(Plugin plugin) {
         plugins.put(plugin.getClass(), plugin);
         //
         plugin.register(this);

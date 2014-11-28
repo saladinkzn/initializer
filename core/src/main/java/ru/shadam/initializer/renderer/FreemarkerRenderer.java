@@ -18,6 +18,13 @@ public class FreemarkerRenderer {
         this.configuration = configuration;
     }
 
+    /**
+     * Renders template
+     * @param templateName name of tempalte to be rendered
+     * @return rendered template
+     * @throws IOException
+     * @throws TemplateException
+     */
     public String renderTemplate(String templateName) throws IOException, TemplateException {
         return renderTemplate(templateName, new HashMap<>());
     }
@@ -31,7 +38,7 @@ public class FreemarkerRenderer {
      * @throws TemplateException
      */
     public String renderTemplate(String templateName, Object dataModel) throws IOException, TemplateException {
-        StringWriter stringWriter = new StringWriter();
+        final StringWriter stringWriter = new StringWriter();
         final Template template = configuration.getTemplate(templateName);
         template.process(dataModel, stringWriter);
         return stringWriter.toString();
