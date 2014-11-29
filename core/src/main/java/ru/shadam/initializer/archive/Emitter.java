@@ -44,8 +44,7 @@ public class Emitter {
             final Path path = Paths.get(rootCategory, file.getName());
             final java.io.File dirFile = path.getParent().toFile();
             final java.io.File ioFile = path.toFile();
-            final boolean mkdirs = dirFile.mkdirs();
-            if(!mkdirs) {
+            if(!dirFile.exists() && !dirFile.mkdirs()) {
                 throw new IllegalStateException("Subfolder was not created");
             }
             try(FileOutputStream fileOutputStream = new FileOutputStream(ioFile);

@@ -8,7 +8,7 @@ repositories {
 }
 
 <#list plugins as plugin>
-apply plugin: 'java'
+apply plugin: '${plugin.name}'
 </#list>
 
 dependencies {
