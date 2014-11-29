@@ -14,7 +14,14 @@
             </div>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <form method="post" action="/generate/springBoot.zip">
+                    <form role="form" method="post" action="/generate/springBoot.zip">
+                        <div class="form-group">
+                            <label for="version">Spring Boot version</label>
+                            <select name="version" id="version">
+                                <option>1.1.9.RELEASE</option>
+                                <option>1.2.0.RC2</option>
+                            </select>
+                        </div>
                         <button class="btn btn-default" type="submit">
                             Сгенерировать проект
                         </button>
