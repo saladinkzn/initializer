@@ -44,7 +44,10 @@ public class Emitter {
             final Path path = Paths.get(rootCategory, file.getName());
             final java.io.File dirFile = path.getParent().toFile();
             final java.io.File ioFile = path.toFile();
-            dirFile.mkdirs();
+            final boolean mkdirs = dirFile.mkdirs();
+            if(!mkdirs) {
+                throw new IllegalStateException("Subfolder was not created");
+            }
             try(FileOutputStream fileOutputStream = new FileOutputStream(ioFile);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter)) {

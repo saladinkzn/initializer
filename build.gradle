@@ -15,6 +15,10 @@ subprojects {
 		targetCompatibility = '1.7'
 		options.encoding = 'UTF-8'
 	}
+
+	dependencies {
+		testCompile 'junit:junit:4.11'
+	}
 }
 
 project(':core') {
