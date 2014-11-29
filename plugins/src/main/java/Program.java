@@ -3,11 +3,11 @@ import freemarker.template.TemplateException;
 import ru.shadam.initializer.archive.Emitter;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.renderer.FreemarkerRenderer;
-import ru.shadam.initilizer.plugin.gradle.GradleConfig;
-import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
-import ru.shadam.initilizer.plugin.java.JavaConfig;
-import ru.shadam.initilizer.plugin.java.JavaPlugin;
-import ru.shadam.initilizer.plugin.java.config.JavaClass;
+import ru.shadam.initializer.plugin.gradle.GradleConfig;
+import ru.shadam.initializer.plugin.gradle.GradlePlugin;
+import ru.shadam.initializer.plugin.java.JavaConfig;
+import ru.shadam.initializer.plugin.java.JavaPlugin;
+import ru.shadam.initializer.plugin.java.config.JavaClass;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,10 +26,10 @@ public class Program {
         final FreemarkerRenderer renderer = new FreemarkerRenderer(configuration);
         //
         final Emitter emitter = new Emitter();
-        final GradlePlugin gradlePlugin = new GradlePlugin(renderer);
-        final JavaPlugin javaPlugin = new JavaPlugin(renderer);
+        final GradlePlugin gradlePlugin = new GradlePlugin();
+        final JavaPlugin javaPlugin = new JavaPlugin();
         //
-        final Project project = new Project();
+        final Project project = new Project(renderer);
         // register plugin
         project.registerPlugin(gradlePlugin);
         project.registerPlugin(javaPlugin);

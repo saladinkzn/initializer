@@ -1,9 +1,8 @@
-package ru.shadam.initilizer.plugin.gradle;
+package ru.shadam.initializer.plugin.gradle;
 
 import ru.shadam.initializer.archive.File;
-import ru.shadam.initializer.project.Project;
-import ru.shadam.initializer.renderer.FreemarkerRenderer;
 import ru.shadam.initializer.plugin.Plugin;
+import ru.shadam.initializer.project.Project;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +12,6 @@ import java.util.List;
  */
 public class GradlePlugin extends Plugin {
     public static final String GRADLE_CONFIG_KEY = "gradle";
-
-    public GradlePlugin(FreemarkerRenderer renderer) {
-        super(renderer);
-    }
 
     @Override
     public void register(Project project) {
@@ -28,7 +23,7 @@ public class GradlePlugin extends Plugin {
         final GradleConfig gradle = project.getConfig("gradle");
         //
         final List<File> files = new ArrayList<>();
-        files.add(new File("build.gradle", renderFile("templates/build.gradle.ftl", gradle)));
+        files.add(new File("build.gradle", project.renderFile("templates/build.gradle.ftl", gradle)));
         return files;
     }
 }

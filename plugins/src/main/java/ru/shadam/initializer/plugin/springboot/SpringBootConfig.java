@@ -1,6 +1,6 @@
-package ru.shadam.initilizer.plugin.springboot;
+package ru.shadam.initializer.plugin.springboot;
 
-import ru.shadam.initilizer.plugin.java.config.JavaClass;
+import ru.shadam.initializer.plugin.java.config.JavaClass;
 
 /**
  * @author sala

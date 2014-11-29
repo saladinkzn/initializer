@@ -1,15 +1,14 @@
-package ru.shadam.initilizer.plugin.springboot;
+package ru.shadam.initializer.plugin.springboot;
 
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
+import ru.shadam.initializer.plugin.gradle.GradlePlugin;
+import ru.shadam.initializer.plugin.java.JavaConfig;
+import ru.shadam.initializer.plugin.java.JavaPlugin;
 import ru.shadam.initializer.project.Project;
-import ru.shadam.initializer.renderer.FreemarkerRenderer;
-import ru.shadam.initilizer.plugin.gradle.GradleConfig;
-import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
-import ru.shadam.initilizer.plugin.gradle.config.Dependency;
-import ru.shadam.initilizer.plugin.gradle.config.Repository;
-import ru.shadam.initilizer.plugin.java.JavaConfig;
-import ru.shadam.initilizer.plugin.java.JavaPlugin;
+import ru.shadam.initializer.plugin.gradle.GradleConfig;
+import ru.shadam.initializer.plugin.gradle.config.Dependency;
+import ru.shadam.initializer.plugin.gradle.config.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +17,7 @@ import java.util.List;
  * @author sala
  */
 public class SpringBootPlugin extends Plugin {
-
     public static final String SPRINGBOOT_CONFIG_KEY = "springboot";
-
-    public SpringBootPlugin(FreemarkerRenderer renderer) {
-        super(renderer);
-    }
 
     @Override
     public void register(Project project) {

@@ -3,9 +3,9 @@ import ru.shadam.initializer.archive.Emitter;
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.renderer.FreemarkerRenderer;
-import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
-import ru.shadam.initilizer.plugin.java.JavaPlugin;
-import ru.shadam.initilizer.plugin.springboot.SpringBootPlugin;
+import ru.shadam.initializer.plugin.gradle.GradlePlugin;
+import ru.shadam.initializer.plugin.java.JavaPlugin;
+import ru.shadam.initializer.plugin.springboot.SpringBootPlugin;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -23,11 +23,11 @@ public class SpringBootProgram {
         final FreemarkerRenderer renderer = new FreemarkerRenderer(configuration);
         //
         final Emitter emitter = new Emitter();
-        final GradlePlugin gradlePlugin = new GradlePlugin(renderer);
-        final JavaPlugin javaPlugin = new JavaPlugin(renderer);
-        final SpringBootPlugin springBootPlugin = new SpringBootPlugin(renderer);
+        final GradlePlugin gradlePlugin = new GradlePlugin();
+        final JavaPlugin javaPlugin = new JavaPlugin();
+        final SpringBootPlugin springBootPlugin = new SpringBootPlugin();
 
-        final Project project = new Project();
+        final Project project = new Project(renderer);
         project.registerPlugins(gradlePlugin, javaPlugin, springBootPlugin);
         //
         final List<File> files = project.execute();

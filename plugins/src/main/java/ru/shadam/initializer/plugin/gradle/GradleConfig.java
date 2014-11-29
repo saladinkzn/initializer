@@ -1,9 +1,9 @@
-package ru.shadam.initilizer.plugin.gradle;
+package ru.shadam.initializer.plugin.gradle;
 
-import ru.shadam.initilizer.plugin.gradle.config.Dependency;
-import ru.shadam.initilizer.plugin.gradle.config.Extension;
-import ru.shadam.initilizer.plugin.gradle.config.Plugin;
-import ru.shadam.initilizer.plugin.gradle.config.Repository;
+import ru.shadam.initializer.plugin.gradle.config.Plugin;
+import ru.shadam.initializer.plugin.gradle.config.Dependency;
+import ru.shadam.initializer.plugin.gradle.config.Extension;
+import ru.shadam.initializer.plugin.gradle.config.Repository;
 
 import java.util.ArrayList;
 import java.util.List;

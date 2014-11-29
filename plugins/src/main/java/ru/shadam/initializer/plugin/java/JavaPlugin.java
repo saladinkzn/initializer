@@ -1,13 +1,12 @@
-package ru.shadam.initilizer.plugin.java;
+package ru.shadam.initializer.plugin.java;
 
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
-import ru.shadam.initilizer.plugin.gradle.GradleConfig;
-import ru.shadam.initilizer.plugin.gradle.GradlePlugin;
-import ru.shadam.initilizer.plugin.gradle.config.Extension;
-import ru.shadam.initilizer.plugin.java.config.JavaClass;
 import ru.shadam.initializer.project.Project;
-import ru.shadam.initializer.renderer.FreemarkerRenderer;
+import ru.shadam.initializer.plugin.gradle.GradleConfig;
+import ru.shadam.initializer.plugin.gradle.GradlePlugin;
+import ru.shadam.initializer.plugin.gradle.config.Extension;
+import ru.shadam.initializer.plugin.java.config.JavaClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,10 +17,6 @@ import java.util.List;
  */
 public class JavaPlugin extends Plugin {
     public static final String JAVA_CONFIG_KEY = "compileJava";
-
-    public JavaPlugin(FreemarkerRenderer renderer) {
-        super(renderer);
-    }
 
     @Override
     public void register(Project project) {
@@ -43,7 +38,7 @@ public class JavaPlugin extends Plugin {
         options.put("options.encoding", Extension.wrapOptionValue("UTF-8"));
         //
         gradleConfig.getExtensions().add(new Extension("compileJava", options));
-        gradleConfig.getPlugins().add(new ru.shadam.initilizer.plugin.gradle.config.Plugin("java"));
+        gradleConfig.getPlugins().add(new ru.shadam.initializer.plugin.gradle.config.Plugin("java"));
     }
 
     @Override
@@ -52,7 +47,8 @@ public class JavaPlugin extends Plugin {
         //
         final List<File> files = new ArrayList<>();
         for (JavaClass javaClass : javaConfig.getClasses()) {
-            files.add(new File(javaClass.getPath(javaConfig.getSourceDirectory()), renderFile(javaClass.getTemplateName(), javaClass)));
+            final String fileName = javaClass.getPath(javaConfig.getSourceDirectory());
+            files.add(new File(fileName, project.renderFile(javaClass.getTemplateName(), javaClass)));
         }
         return files;
     }

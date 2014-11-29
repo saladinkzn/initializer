@@ -1,9 +1,12 @@
 package ru.shadam.initializer.project;
 
+import freemarker.template.TemplateException;
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
+import ru.shadam.initializer.renderer.FreemarkerRenderer;
 import ru.shadam.initializer.util.InstantiateUtil;
 
+import java.io.IOException;
 import java.util.*;
 
 // TODO : Introduce separate interfaces for plugins and users?
@@ -11,10 +14,13 @@ import java.util.*;
  *
  */
 public class Project {
+    private final FreemarkerRenderer renderer;
+
     private final Map<Class<? extends Plugin>, Plugin> plugins;
     private final Map<String, Object> configs;
 
-    public Project() {
+    public Project(FreemarkerRenderer renderer) {
+        this.renderer = renderer;
         plugins = new LinkedHashMap<>();
         configs = new HashMap<>();
     }
@@ -54,6 +60,14 @@ public class Project {
             files.addAll(plugin.generateFiles(this));
         }
         return files;
+    }
+
+    public String renderFile(String templateName, Object dataModel) {
+        try {
+            return renderer.renderTemplate(templateName, dataModel);
+        } catch (IOException | TemplateException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-package ru.shadam.initilizer.plugin.java.config;
+package ru.shadam.initializer.plugin.java.config;
 
 /**
  *
