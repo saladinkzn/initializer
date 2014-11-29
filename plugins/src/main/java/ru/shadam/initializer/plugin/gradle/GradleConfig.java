@@ -1,12 +1,14 @@
 package ru.shadam.initializer.plugin.gradle;
 
-import ru.shadam.initializer.plugin.gradle.config.Plugin;
 import ru.shadam.initializer.plugin.gradle.config.Dependency;
 import ru.shadam.initializer.plugin.gradle.config.Extension;
+import ru.shadam.initializer.plugin.gradle.config.Plugin;
 import ru.shadam.initializer.plugin.gradle.config.Repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -14,7 +16,7 @@ import java.util.List;
 public class GradleConfig {
     private String gradleVersion = "2.2";
 
-    private List<Repository> repositories = new ArrayList<>();
+    private Set<Repository> repositories = new HashSet<>();
     private List<Dependency> dependencies = new ArrayList<>();
     private List<Extension> extensions = new ArrayList<>();
     private List<Plugin> plugins = new ArrayList<>();
@@ -51,11 +53,11 @@ public class GradleConfig {
         this.plugins = plugins;
     }
 
-    public List<Repository> getRepositories() {
+    public Set<Repository> getRepositories() {
         return repositories;
     }
 
-    public void setRepositories(List<Repository> repositories) {
+    public void setRepositories(Set<Repository> repositories) {
         this.repositories = repositories;
     }
 }

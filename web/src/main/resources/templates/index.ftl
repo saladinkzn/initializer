@@ -22,6 +22,13 @@
                                 <option>1.2.0.RC2</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="language">Language</label>
+                            <select name="language" id="language">
+                                <option>java</option>
+                                <option>groovy</option>
+                            </select>
+                        </div>
                         <button class="btn btn-default" type="submit">
                             Сгенерировать проект
                         </button>

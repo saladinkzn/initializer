@@ -12,9 +12,9 @@ apply plugin: '${plugin.name}'
 </#list>
 
 dependencies {
-    <#list dependencies as dependency>
-        compile("${dependency.group}:${dependency.name}:${dependency.version}")
-    </#list>
+<#list dependencies as dependency>
+    compile("${dependency.group}:${dependency.name}:${dependency.version}")
+</#list>
 }
 
 <#list extensions![] as extension>

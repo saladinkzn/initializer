@@ -29,6 +29,16 @@ public class Project {
         return plugins.containsKey(pluginClass);
     }
 
+    @SafeVarargs
+    public final boolean isAnyPluginRegistered(Class<? extends Plugin>... pluginClasses) {
+        for (Class<? extends Plugin> pluginClass : pluginClasses) {
+            if(isPluginRegistered(pluginClass)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void registerPlugin(Plugin plugin) {
         plugins.put(plugin.getClass(), plugin);
         //

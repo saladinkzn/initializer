@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.shadam.initializer.archive.Emitter;
 import ru.shadam.initializer.archive.File;
+import ru.shadam.initializer.plugin.Plugin;
+import ru.shadam.initializer.plugin.groovy.GroovyPlugin;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.renderer.FreemarkerRenderer;
 import ru.shadam.initializer.web.domain.GenerateSpringBootFormBean;
@@ -43,11 +45,21 @@ public class IndexController {
         //
         final Emitter emitter = new Emitter();
         final GradlePlugin gradlePlugin = new GradlePlugin();
-        final JavaPlugin javaPlugin = new JavaPlugin();
+        final Plugin languagePlugin;
+        switch (generateSpringBootFormBean.getLanguage()) {
+            case "java":
+                languagePlugin = new JavaPlugin();
+                break;
+            case "groovy":
+                languagePlugin = new GroovyPlugin();
+                break;
+            default:
+                throw new IllegalArgumentException("invalid language: " + generateSpringBootFormBean.getLanguage());
+        }
         final SpringBootPlugin springBootPlugin = new SpringBootPlugin();
 
         final Project project = new Project(renderer);
-        project.registerPlugins(gradlePlugin, javaPlugin, springBootPlugin);
+        project.registerPlugins(gradlePlugin, languagePlugin, springBootPlugin);
         //
         final SpringBootConfig config = project.getConfig(SpringBootPlugin.SPRINGBOOT_CONFIG_KEY);
         config.setSpringBootVersion(generateSpringBootFormBean.getVersion());

@@ -3,6 +3,9 @@ package ru.shadam.initializer.plugin.springboot;
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
 import ru.shadam.initializer.plugin.gradle.GradlePlugin;
+import ru.shadam.initializer.plugin.groovy.GroovyConfig;
+import ru.shadam.initializer.plugin.groovy.GroovyPlugin;
+import ru.shadam.initializer.plugin.groovy.config.GroovyClass;
 import ru.shadam.initializer.plugin.java.JavaConfig;
 import ru.shadam.initializer.plugin.java.JavaPlugin;
 import ru.shadam.initializer.project.Project;
@@ -24,8 +27,8 @@ public class SpringBootPlugin extends Plugin {
         if(!project.isPluginRegistered(GradlePlugin.class)) {
             throw new IllegalStateException("Spring-Boot depends on gradle plugin");
         }
-        if(!project.isPluginRegistered(JavaPlugin.class)) {
-            throw new IllegalStateException("Spring-Boot depends on java plugin");
+        if(!project.isAnyPluginRegistered(JavaPlugin.class, GroovyPlugin.class)) {
+            throw new IllegalStateException("Spring-Boot depends on java or groovy plugin");
         }
 
         project.registerConfig(SPRINGBOOT_CONFIG_KEY, SpringBootConfig.class);
@@ -46,6 +49,20 @@ public class SpringBootPlugin extends Plugin {
         gradleConfig.getDependencies()
                 .add(new Dependency("org.springframework.boot", "spring-boot-starter-web", springBootVersion));
         //
+        final GroovyConfig groovyConfig = GroovyPlugin.getConfig(project);
+        if(groovyConfig != null) {
+            groovyConfig.getClasses()
+                    .add(new GroovyClass(
+                            springBootConfig.getController().getPackageName(),
+                            springBootConfig.getController().getClassName(),
+                            "templates/springboot/controller.groovy.ftl"));
+            groovyConfig.getClasses()
+                    .add(new GroovyClass(
+                            springBootConfig.getEntryPoint().getPackageName(),
+                            springBootConfig.getEntryPoint().getClassName(),
+                            "templates/springboot/entrypoint.groovy.ftl"));
+            return;
+        }
         final JavaConfig javaConfig = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
         //
         javaConfig.getClasses().add(springBootConfig.getController());
