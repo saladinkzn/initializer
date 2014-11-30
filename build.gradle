@@ -1,3 +1,13 @@
+buildscript {
+	repositories {
+		maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local' }
+	}
+
+	dependencies {
+		classpath 'ru.shadam.augmentor:augmentor:0.1-SNAPSHOT'
+	}
+}
+
 def rootProject = project
 
 subprojects {
@@ -44,6 +54,10 @@ project(':web') {
 		compile 'org.springframework.boot:spring-boot-starter-web:1.2.0.RC2'
 		compile 'org.springframework.boot:spring-boot-starter-freemarker:1.2.0.RC2'
 		compile 'org.webjars:bootstrap:3.3.1'
+	}
+
+	task 're-run'(type: ru.shadam.augmentor.AugmentorTask) {
+		innerTask = 'run'
 	}
 }
 

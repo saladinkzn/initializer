@@ -23,7 +23,7 @@ public class GradlePlugin extends Plugin {
         final GradleConfig gradle = project.getConfig("gradle");
         //
         final List<File> files = new ArrayList<>();
-        files.add(new File("build.gradle", project.renderFile("templates/build.gradle.ftl", gradle)));
+        files.add(new File("build.gradle", project.renderFile("templates/gradle/build.gradle.ftl", gradle)));
         return files;
     }
 }

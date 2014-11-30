@@ -1,6 +1,9 @@
 buildscript {
 }
 
+group = ${group}
+version = ${version}
+
 repositories {
     <#list repositories as repository>
     ${repository.string}

@@ -16,6 +16,9 @@ import java.util.Set;
 public class GradleConfig {
     private String gradleVersion = "2.2";
 
+    private String group = "org.example";
+    private String version = "1.0-SNAPSHOT";
+
     private Set<Repository> repositories = new HashSet<>();
     private List<Dependency> dependencies = new ArrayList<>();
     private List<Extension> extensions = new ArrayList<>();
@@ -27,6 +30,22 @@ public class GradleConfig {
 
     public void setGradleVersion(String gradleVersion) {
         this.gradleVersion = gradleVersion;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public List<Dependency> getDependencies() {
