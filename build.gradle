@@ -35,7 +35,7 @@ project(':plugins') {
 
 project(':web') {
 	apply plugin: 'application'
-	mainClassName = 'ru.shadam.initializer.Program'
+	mainClassName = 'ru.shadam.initializer.web.Program'
 
 	dependencies {
 		compile project(':core')
