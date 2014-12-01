@@ -3,7 +3,7 @@ Initalizer
 
 [![Build Status](https://travis-ci.org/saladinkzn/initializer.svg?branch=master)](https://travis-ci.org/saladinkzn/initializer)
 
-Tool for quick bootstrapping of projects.
+Tool for quick bootstrapping projects.
 
 #### Copyright and License
 ---------------------
