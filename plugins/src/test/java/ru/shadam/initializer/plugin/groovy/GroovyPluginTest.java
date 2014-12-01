@@ -36,7 +36,7 @@ public class GroovyPluginTest {
         //
         final GroovyConfig config = GroovyPlugin.getConfig(project);
         config.getClasses()
-                .add(new GroovyClass("org.example", "Program", "templates/program.groovy.ftl"));
+                .add(new GroovyClass("org.example", "Program", "program.groovy.ftl"));
         //
         final List<File> execute = project.execute();
         //
@@ -64,7 +64,7 @@ public class GroovyPluginTest {
         //
         final GroovyConfig config = GroovyPlugin.getConfig(project);
         config.getClasses()
-                .add(new GroovyClass("org.example", "Program", "templates/program.groovy.ftl"));
+                .add(new GroovyClass("org.example", "Program", "program.groovy.ftl"));
         //
         final List<File> execute = project.execute();
 

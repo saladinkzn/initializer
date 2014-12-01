@@ -37,7 +37,7 @@ public class JavaPluginTest {
         Assert.assertEquals("src/main/java", config.getSourceDirectory());
         //
         config.getClasses()
-                .add(new JavaClass("org.example", "Program", "templates/program.java.ftl"));
+                .add(new JavaClass("org.example", "Program", "program.java.ftl"));
         //
         final List<File> files = project.execute();
         final Set<String> fileNames = new HashSet<>();
