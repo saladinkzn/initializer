@@ -1,8 +1,8 @@
 buildscript {
 }
 
-group = ${group}
-version = ${version}
+group = '${group}'
+version = '${version}'
 
 repositories {
     <#list repositories as repository>

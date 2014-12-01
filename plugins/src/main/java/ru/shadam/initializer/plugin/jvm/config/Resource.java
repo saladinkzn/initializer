@@ -1,19 +1,22 @@
-package ru.shadam.initializer.plugin.java.config;
+package ru.shadam.initializer.plugin.jvm.config;
 
 import java.io.File;
 import java.nio.file.Paths;
 
 /**
- *
+ * @author sala
  */
-public class JavaClass {
+public class Resource {
     private String packageName;
-    private String className;
+    private String fileName;
     private String templateName;
 
-    public JavaClass(String packageName, String className, String templateName) {
+    public Resource() {
+    }
+
+    public Resource(String packageName, String fileName, String templateName) {
         this.packageName = packageName;
-        this.className = className;
+        this.fileName = fileName;
         this.templateName = templateName;
     }
 
@@ -25,12 +28,12 @@ public class JavaClass {
         this.packageName = packageName;
     }
 
-    public String getClassName() {
-        return className;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getTemplateName() {
@@ -42,6 +45,6 @@ public class JavaClass {
     }
 
     public String getPath(String sourceDirectory) {
-        return Paths.get(sourceDirectory, packageName.replace(".", File.separator), className + ".java").toString();
+        return Paths.get(sourceDirectory, packageName.replace(".", File.separator), fileName).toString();
     }
 }

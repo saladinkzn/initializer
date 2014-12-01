@@ -69,6 +69,10 @@ public class IndexController {
         //
         final SpringBootConfig config = project.getConfig(SpringBootPlugin.SPRINGBOOT_CONFIG_KEY);
         config.setSpringBootVersion(generateSpringBootFormBean.getBootVersion());
+        config.getTemplateEngineConfig()
+                .setUseFreemarker(generateSpringBootFormBean.isUseFreemarker());
+        config.getTemplateEngineConfig()
+                .setUseVelocity(generateSpringBootFormBean.isUseVelocity());
         //
         final List<File> files = project.execute();
         final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

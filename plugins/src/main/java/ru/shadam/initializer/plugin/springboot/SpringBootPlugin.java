@@ -8,6 +8,8 @@ import ru.shadam.initializer.plugin.groovy.GroovyPlugin;
 import ru.shadam.initializer.plugin.groovy.config.GroovyClass;
 import ru.shadam.initializer.plugin.java.JavaConfig;
 import ru.shadam.initializer.plugin.java.JavaPlugin;
+import ru.shadam.initializer.plugin.jvm.config.Resource;
+import ru.shadam.initializer.plugin.springboot.config.ControllerJavaClass;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.plugin.gradle.GradleConfig;
 import ru.shadam.initializer.plugin.gradle.config.Dependency;
@@ -49,6 +51,15 @@ public class SpringBootPlugin extends Plugin {
         gradleConfig.getDependencies()
                 .add(new Dependency("org.springframework.boot", "spring-boot-starter-web", springBootVersion));
         //
+        if(springBootConfig.getTemplateEngineConfig().isUseFreemarker()) {
+            gradleConfig.getDependencies()
+                    .add(new Dependency("org.springframework.boot", "spring-boot-starter-freemarker", springBootVersion));
+        }
+        if(springBootConfig.getTemplateEngineConfig().isUseVelocity()) {
+            gradleConfig.getDependencies()
+                    .add(new Dependency("org.springframework.boot", "spring-boot-starter-velocity", springBootVersion));
+        }
+
         final GroovyConfig groovyConfig = GroovyPlugin.getConfig(project);
         if(groovyConfig != null) {
             groovyConfig.getClasses()
@@ -65,8 +76,20 @@ public class SpringBootPlugin extends Plugin {
         }
         final JavaConfig javaConfig = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
         //
-        javaConfig.getClasses().add(springBootConfig.getController());
-        javaConfig.getClasses().add(springBootConfig.getEntryPoint());
+        final ControllerJavaClass controllerJavaClass = ControllerJavaClass.fromJavaClass(springBootConfig.getController());
+        controllerJavaClass.setTemplateEngineConfig(springBootConfig.getTemplateEngineConfig());
+        javaConfig.getClasses().add(controllerJavaClass);
+        javaConfig.getClasses().add(
+                springBootConfig.getEntryPoint()
+        );
+        if(springBootConfig.getTemplateEngineConfig().isUseFreemarker()) {
+            javaConfig.getResources()
+                    .add(new Resource("templates", "freemarker.ftl", "templates/springboot/freemarker.ftl.ftl"));
+        }
+        if(springBootConfig.getTemplateEngineConfig().isUseVelocity()) {
+            javaConfig.getResources()
+                    .add(new Resource("templates", "velocity.vm", "templates/springboot/velocity.vm.ftl"));
+        }
     }
 
     @Override

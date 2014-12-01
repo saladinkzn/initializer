@@ -9,6 +9,8 @@ public class GenerateSpringBootFormBean {
     private String version;
     private String bootVersion;
     private String language;
+    private boolean useFreemarker;
+    private boolean useVelocity;
 
     public String getGroup() {
         return group;
@@ -48,5 +50,21 @@ public class GenerateSpringBootFormBean {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public boolean isUseFreemarker() {
+        return useFreemarker;
+    }
+
+    public void setUseFreemarker(boolean useFreemarker) {
+        this.useFreemarker = useFreemarker;
+    }
+
+    public boolean isUseVelocity() {
+        return useVelocity;
+    }
+
+    public void setUseVelocity(boolean useVelocity) {
+        this.useVelocity = useVelocity;
     }
 }

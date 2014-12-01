@@ -2,6 +2,7 @@ package ru.shadam.initializer.plugin.java;
 
 import ru.shadam.initializer.archive.File;
 import ru.shadam.initializer.plugin.Plugin;
+import ru.shadam.initializer.plugin.jvm.config.Resource;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.plugin.gradle.GradleConfig;
 import ru.shadam.initializer.plugin.gradle.GradlePlugin;
@@ -49,6 +50,10 @@ public class JavaPlugin extends Plugin {
         for (JavaClass javaClass : javaConfig.getClasses()) {
             final String fileName = javaClass.getPath(javaConfig.getSourceDirectory());
             files.add(new File(fileName, project.renderFile(javaClass.getTemplateName(), javaClass)));
+        }
+        for (Resource resource : javaConfig.getResources()) {
+            final String fileName = resource.getPath(javaConfig.getResourceDirectory());
+            files.add(new File(fileName, project.renderFile(resource.getTemplateName(), resource)));
         }
         return files;
     }

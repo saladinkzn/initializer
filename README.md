@@ -5,6 +5,11 @@ Initalizer
 
 Tool for quick bootstrapping projects.
 
+#### Running from sources
+---------------------
+You can run web gui by running `gradlew :web:run` command from command line.
+
+
 #### Copyright and License
 ---------------------
 This project is licensed under [MIT license](LICENSE)
