@@ -1,6 +1,7 @@
 package ru.shadam.initializer.plugin.groovy;
 
 import ru.shadam.initializer.plugin.groovy.config.GroovyClass;
+import ru.shadam.initializer.plugin.jvm.config.Resource;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -14,6 +15,9 @@ public class GroovyConfig {
 
     private List<GroovyClass> classes = new ArrayList<>();
     private String sourceDirectory = Paths.get("src", "main", "groovy").toString();
+
+    private List<Resource> resources = new ArrayList<>();
+    private String resourceDirectory = Paths.get("src", "main", "resources").toString();
 
     public String getGroovyVersion() {
         return groovyVersion;
@@ -37,5 +41,21 @@ public class GroovyConfig {
 
     public void setSourceDirectory(String sourceDirectory) {
         this.sourceDirectory = sourceDirectory;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
+    public String getResourceDirectory() {
+        return resourceDirectory;
+    }
+
+    public void setResourceDirectory(String resourceDirectory) {
+        this.resourceDirectory = resourceDirectory;
     }
 }

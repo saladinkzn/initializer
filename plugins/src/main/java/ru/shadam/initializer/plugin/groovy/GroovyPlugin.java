@@ -7,6 +7,7 @@ import ru.shadam.initializer.plugin.gradle.GradlePlugin;
 import ru.shadam.initializer.plugin.gradle.config.Dependency;
 import ru.shadam.initializer.plugin.gradle.config.Repository;
 import ru.shadam.initializer.plugin.groovy.config.GroovyClass;
+import ru.shadam.initializer.plugin.jvm.config.Resource;
 import ru.shadam.initializer.project.Project;
 
 import java.util.ArrayList;
@@ -43,12 +44,16 @@ public class GroovyPlugin extends Plugin {
 
     @Override
     public List<File> generateFiles(Project project) {
-        final GroovyConfig javaConfig = project.getConfig(GROOVY_CONFIG_KEY);
+        final GroovyConfig groovyConfig = project.getConfig(GROOVY_CONFIG_KEY);
         //
         final List<File> files = new ArrayList<>();
-        for (GroovyClass groovyClass : javaConfig.getClasses()) {
-            final String fileName = groovyClass.getPath(javaConfig.getSourceDirectory());
+        for (GroovyClass groovyClass : groovyConfig.getClasses()) {
+            final String fileName = groovyClass.getPath(groovyConfig.getSourceDirectory());
             files.add(new File(fileName, project.renderFile(groovyClass.getTemplateName(), groovyClass)));
+        }
+        for(Resource resource: groovyConfig.getResources()) {
+            final String fileName = resource.getPath(groovyConfig.getResourceDirectory());
+            files.add(new File(fileName, project.renderFile(resource.getTemplateName(), resource)));
         }
         return files;
     }

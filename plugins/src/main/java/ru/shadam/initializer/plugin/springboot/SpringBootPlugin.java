@@ -9,6 +9,7 @@ import ru.shadam.initializer.plugin.groovy.config.GroovyClass;
 import ru.shadam.initializer.plugin.java.JavaConfig;
 import ru.shadam.initializer.plugin.java.JavaPlugin;
 import ru.shadam.initializer.plugin.jvm.config.Resource;
+import ru.shadam.initializer.plugin.springboot.config.ControllerGroovyClass;
 import ru.shadam.initializer.plugin.springboot.config.ControllerJavaClass;
 import ru.shadam.initializer.project.Project;
 import ru.shadam.initializer.plugin.gradle.GradleConfig;
@@ -62,16 +63,27 @@ public class SpringBootPlugin extends Plugin {
 
         final GroovyConfig groovyConfig = GroovyPlugin.getConfig(project);
         if(groovyConfig != null) {
-            groovyConfig.getClasses()
-                    .add(new GroovyClass(
-                            springBootConfig.getController().getPackageName(),
-                            springBootConfig.getController().getClassName(),
-                            "templates/springboot/controller.groovy.ftl"));
+            final GroovyClass groovyClass = new GroovyClass(
+                    springBootConfig.getController().getPackageName(),
+                    springBootConfig.getController().getClassName(),
+                    "templates/springboot/controller.groovy.ftl");
+            final ControllerGroovyClass controllerGroovyClass = ControllerGroovyClass.fromGroovyClass(groovyClass);
+            controllerGroovyClass.setTemplateEngineConfig(springBootConfig.getTemplateEngineConfig());
+            groovyConfig.getClasses().add(controllerGroovyClass);
             groovyConfig.getClasses()
                     .add(new GroovyClass(
                             springBootConfig.getEntryPoint().getPackageName(),
                             springBootConfig.getEntryPoint().getClassName(),
                             "templates/springboot/entrypoint.groovy.ftl"));
+            if(springBootConfig.getTemplateEngineConfig().isUseFreemarker()) {
+                groovyConfig.getResources()
+                        .add(new Resource("templates", "freemarker.ftl", "templates/springboot/freemarker.ftl.ftl"));
+            }
+            if(springBootConfig.getTemplateEngineConfig().isUseVelocity()) {
+                groovyConfig.getResources()
+                        .add(new Resource("templates", "velocity.vm", "templates/springboot/velocity.vm.ftl"));
+            }
+
             return;
         }
         final JavaConfig javaConfig = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
@@ -79,9 +91,7 @@ public class SpringBootPlugin extends Plugin {
         final ControllerJavaClass controllerJavaClass = ControllerJavaClass.fromJavaClass(springBootConfig.getController());
         controllerJavaClass.setTemplateEngineConfig(springBootConfig.getTemplateEngineConfig());
         javaConfig.getClasses().add(controllerJavaClass);
-        javaConfig.getClasses().add(
-                springBootConfig.getEntryPoint()
-        );
+        javaConfig.getClasses().add(springBootConfig.getEntryPoint());
         if(springBootConfig.getTemplateEngineConfig().isUseFreemarker()) {
             javaConfig.getResources()
                     .add(new Resource("templates", "freemarker.ftl", "templates/springboot/freemarker.ftl.ftl"));
