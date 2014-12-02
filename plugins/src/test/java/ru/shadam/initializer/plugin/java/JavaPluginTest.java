@@ -42,7 +42,7 @@ public class JavaPluginTest {
         final JavaConfig config = project.getConfig(JavaPlugin.JAVA_CONFIG_KEY);
         Assert.assertEquals("1.7", config.getSource());
         Assert.assertEquals("1.7", config.getTarget());
-        Assert.assertEquals("src/main/java", config.getSourceDirectory());
+        Assert.assertEquals(Paths.get("src", "main", "java").toString(), config.getSourceDirectory());
         //
         config.getClasses()
                 .add(new JavaClass("org.example", "Program", "program.java.ftl"));
@@ -55,7 +55,7 @@ public class JavaPluginTest {
         }
         //
         Assert.assertTrue(fileNames.contains("build.gradle"));
-        Assert.assertTrue(fileNames.contains("src/main/java/org/example/Program.java"));
+        Assert.assertTrue(fileNames.contains(Paths.get("src", "main", "java", "org", "example", "Program.java").toString()));
     }
 
     @Test
