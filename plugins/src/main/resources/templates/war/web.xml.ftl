@@ -5,7 +5,7 @@
          version="3.0">
     <#list servlets as servlet>
     <servlet>
-        <servlet-main>${servlet.name}</servlet-main>
+        <servlet-name>${servlet.name}</servlet-name>
         <servlet-class>${servlet.servletClass}</servlet-class>
     </servlet>
     <servlet-mapping>
